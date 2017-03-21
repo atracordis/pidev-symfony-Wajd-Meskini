@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ESPRITPIDEV\UserExpBundle\Entity\Ridedriver" table="ridedriver">
+    <indexes>
+      <index name="idPassenger" columns="idDriver"/>
+      <index name="idFiliale" columns="idFiliale"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="price" type="float" column="price" precision="10" scale="0" nullable="false"/>
+    <field name="citysource" type="string" column="citySource" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="placesource" type="string" column="placeSource" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="longsource" type="float" column="longSource" precision="10" scale="0" nullable="false"/>
+    <field name="latsource" type="float" column="latSource" precision="10" scale="0" nullable="false"/>
+    <field name="citydestination" type="string" column="cityDestination" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="placedestination" type="string" column="placeDestination" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="longdestination" type="float" column="longDestination" precision="10" scale="0" nullable="false"/>
+    <field name="latdestination" type="float" column="latDestination" precision="10" scale="0" nullable="false"/>
+    <field name="datetimesource" type="datetime" column="dateTimeSource" nullable="false"/>
+    <field name="nbrplaces" type="integer" column="nbrPlaces" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="confortvoiture" type="string" column="confortVoiture" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="marquevoiture" type="string" column="marqueVoiture" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="modelevoiture" type="string" column="modeleVoiture" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="handicap" type="boolean" column="handicap" nullable="true"/>
+    <field name="animal" type="boolean" column="animal" nullable="true"/>
+    <field name="haveanimal" type="boolean" column="haveAnimal" nullable="true"/>
+    <field name="haveluggage" type="boolean" column="haveLuggage" nullable="false"/>
+    <field name="luggagemass" type="float" column="luggageMass" precision="10" scale="0" nullable="false"/>
+    <field name="music" type="boolean" column="music" nullable="false"/>
+    <field name="musictaste" type="string" column="musicTaste" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="smoking" type="boolean" column="smoking" nullable="false"/>
+    <field name="allowsmoking" type="boolean" column="allowSmoking" nullable="false"/>
+    <field name="frequency" type="integer" column="frequency" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="frequencyunit" type="string" column="frequencyUnit" length="254" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idfiliale" target-entity="Filiale" fetch="LAZY">
+      <join-columns>
+        <join-column name="idFiliale" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="iddriver" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="idDriver" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

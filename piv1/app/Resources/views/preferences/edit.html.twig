@@ -1,0 +1,51 @@
+{% extends 'layoutFront.html.twig' %}
+
+{% block body %}
+    {% if app.user.id==preference.iduser.id %}
+    {{ form_start(edit_form) }}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Preferences and confidentiality</div>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="panel-heading">Preferences</div>
+
+
+
+                            <div class="form-group"><label>Are you a smoker?</label>{{ form_widget(edit_form.smoking, { 'attr': {'class': 'checkbox'} }) }}</div>
+                        <div class="form-group"><label>Do you allow smoking?</label>{{ form_widget(edit_form.allowsmoking, { 'attr': {'class': 'checkbox'} }) }}</div>
+                        <div class="form-group"><label>Do you allow animals?</label>{{ form_widget(edit_form.animal, { 'attr': {'class': 'checkbox'} }) }}</div>
+                        <div class="form-group"><label>Do you bring an animal with you?</label>{{ form_widget(edit_form.haveanimal, { 'attr': {'class': 'checkbox'} }) }}</div>
+                        <div class="form-group"><label>Do you allow music?</label>{{ form_widget(edit_form.music, { 'attr': {'class': 'checkbox'} }) }}</div>
+                        <div class="form-group"><label>What is your music taste?</label>{{ form_widget(edit_form.musictaste, { 'attr': {'class': 'form-control'} }) }}</div>
+
+                    <div class="panel-heading">Following fields reserved for drivers</div>
+                    <div class="form-group"><label>How comfortable is your car? Leave blank if no car</label>{{ form_widget(edit_form.confortvoiture, { 'attr': {'class': 'form-control'} }) }}</div>
+                    <div class="form-group"><label>What's your car's brand? Leave blank if no car</label>{{ form_widget(edit_form.marquevoiture, { 'attr': {'class': 'form-control'} }) }}</div>
+                    <div class="form-group"><label>What's your car's model? Leave blank if no car</label>{{ form_widget(edit_form.modelevoiture, { 'attr': {'class': 'form-control'} }) }}</div>
+
+                    <button type="submit" value="Edit" class="btn btn-primary">Edit preferences </button></td></tr>
+
+
+                </div>
+                <div class="col-md-6">
+                    <div class="panel-heading">Confidentiality</div>
+
+                    <div class="form-group"><label>Check to display your phone number</label>{{ form_widget(edit_form.telephone, { 'attr': {'class': 'checkbox'} }) }}</div>
+                    <div class="form-group"><label>Check to display your address</label>{{ form_widget(edit_form.address, { 'attr': {'class': 'checkbox'} }) }}</div>
+                    <div class="form-group"><label>Check to display your email</label>{{ form_widget(edit_form.email, { 'attr': {'class': 'checkbox'} }) }}</div>
+
+                    <div class="panel-heading">Personal information</div>
+
+                    <div class="form-group"><label>Enter here your phone number (optional)</label>{{ form_widget(edit_form.telephoneVar, { 'attr': {'class': 'form-control'} }) }}</div>
+                    <div class="form-group"><label>Enter here your address (optional)</label>{{ form_widget(edit_form.addressVar, { 'attr': {'class': 'form-control'} }) }}</div>
+                    <div class="form-group"><label>Check if you want to receive our newsletter</label>{{ form_widget(edit_form.newsletter, { 'attr': {'class': 'checkbox'} }) }}</div>
+
+
+
+                </div></div></div></div></div>
+    {{ form_end(edit_form) }}
+{% else %}Access denied{% endif %}
+{% endblock %}

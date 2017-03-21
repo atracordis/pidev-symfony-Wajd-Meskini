@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ESPRITPIDEV\UserExpBundle\Entity\Response" table="response">
+    <indexes>
+      <index name="IDX_3E7B0BFB213C9B40" columns="idcomplaint"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="content" type="text" column="content" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="type" type="boolean" column="type" nullable="false"/>
+    <field name="datetime" type="datetime" column="dateTime" nullable="false"/>
+    <many-to-one field="idcomplaint" target-entity="Complaints" fetch="LAZY">
+      <join-columns>
+        <join-column name="idcomplaint" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

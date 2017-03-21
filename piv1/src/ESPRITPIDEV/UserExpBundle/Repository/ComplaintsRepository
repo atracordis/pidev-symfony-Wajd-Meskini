@@ -1,0 +1,32 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Admin
+ * Date: 24/02/2017
+ * Time: 10:31
+ */
+
+namespace ESPRITPIDEV\UserExpBundle\Repository;
+
+
+use Doctrine\ORM\EntityRepository;
+
+class ComplaintsRepository extends EntityRepository
+{
+    public function findUsersAndComplaints()
+    {
+        $query=$this->getEntityManager()
+            ->createQuery("
+            SELECT v FROM ESPRITPIDEVUserExpBundle:Complaints v 
+            JOIN v.iduser a where v.Status='Unseen'");
+        return $query->getResult();
+    }
+    public function findUsersDistinct()
+    {
+        $query=$this->getEntityManager()
+            ->createQuery("
+            SELECT distinct v.iduser FROM ESPRITPIDEVUserExpBundle:Complaints v 
+             where v.Status='Unseen'");
+        return $query->getResult();
+    }
+}

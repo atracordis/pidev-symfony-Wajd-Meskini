@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ESPRITPIDEV\UserExpBundle\Entity\Preferences" table="preferences">
+    <indexes>
+      <index name="idUser" columns="idUser"/>
+    </indexes>
+    <id name="iduser" association-key="true"/>
+    <field name="email" type="boolean" column="email" nullable="false"/>
+    <field name="telephone" type="boolean" column="telephone" nullable="false"/>
+    <field name="address" type="boolean" column="address" nullable="false"/>
+    <field name="latitude" type="integer" column="latitude" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="longitude" type="integer" column="longitude" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="music" type="boolean" column="music" nullable="false"/>
+    <field name="musictaste" type="string" column="musicTaste" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="smoking" type="boolean" column="smoking" nullable="false"/>
+    <field name="allowsmoking" type="boolean" column="allowSmoking" nullable="false"/>
+    <field name="animal" type="boolean" column="animal" nullable="false"/>
+    <field name="haveanimal" type="boolean" column="haveAnimal" nullable="false"/>
+    <field name="confortvoiture" type="string" column="confortVoiture" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="modelevoiture" type="string" column="modeleVoiture" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="marquevoiture" type="string" column="marqueVoiture" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <one-to-one field="iduser" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="idUser" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

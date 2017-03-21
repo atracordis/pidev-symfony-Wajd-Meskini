@@ -1,0 +1,9 @@
+espritpidev_user_exp:
+    resource: "@ESPRITPIDEVUserExpBundle/Resources/config/routing.yml"
+    prefix:   /userexp
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+fos_message:
+    resource: "@FOSMessageBundle/Resources/config/routing.xml"
+    prefix: /message

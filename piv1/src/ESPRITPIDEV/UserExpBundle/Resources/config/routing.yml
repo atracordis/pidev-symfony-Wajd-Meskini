@@ -1,0 +1,29 @@
+espritpidev_user_exp_preferences:
+    resource: "@ESPRITPIDEVUserExpBundle/Resources/config/routing/preferences.yml"
+    prefix:   /preferences
+espritpidev_user_exp_complaints:
+    resource: "@ESPRITPIDEVUserExpBundle/Resources/config/routing/complaints.yml"
+    prefix:   /complaints
+espritpidev_user_exp_response:
+    resource: "@ESPRITPIDEVUserExpBundle/Resources/config/routing/response.yml"
+    prefix:   /response
+espritpidev_user_exp_homepage:
+    path:     /
+    defaults: { _controller: ESPRITPIDEVUserExpBundle:Default:index }
+chaya3ni_user_homepage:
+    path:     /
+    defaults: { _controller: Chaya3niUserBundle:Default:index }
+chaya3ni_homepageuser:
+    path:     /user/userpage
+    defaults: { _controller: Chaya3niUserBundle:Default:userpage }
+chaya3ni_homepageemployee:
+    path:     /employee/employeepage
+    defaults: { _controller: Chaya3niUserBundle:Default:employeepage }
+chaya3ni_homepageadmin:
+    path:     /admin/adminpage
+    defaults: { _controller: Chaya3niUserBundle:Default:adminpage }
+chaya3ni_homepagerepresentant:
+    path:     /representant/reppage
+    defaults: { _controller: Chaya3niUserBundle:Default:representantpage }
+user_logout:
+    path: /logout

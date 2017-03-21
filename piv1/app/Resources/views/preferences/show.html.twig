@@ -1,0 +1,80 @@
+{% extends 'layoutBack.html.twig' %}
+
+{% block body %}
+    <h1>Preference</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Email</th>
+                <td>{% if preference.email %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{% if preference.telephone %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{% if preference.address %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ preference.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ preference.longitude }}</td>
+            </tr>
+            <tr>
+                <th>Music</th>
+                <td>{% if preference.music %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Musictaste</th>
+                <td>{{ preference.musictaste }}</td>
+            </tr>
+            <tr>
+                <th>Smoking</th>
+                <td>{% if preference.smoking %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Allowsmoking</th>
+                <td>{% if preference.allowsmoking %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Animal</th>
+                <td>{% if preference.animal %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Haveanimal</th>
+                <td>{% if preference.haveanimal %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Confortvoiture</th>
+                <td>{{ preference.confortvoiture }}</td>
+            </tr>
+            <tr>
+                <th>Modelevoiture</th>
+                <td>{{ preference.modelevoiture }}</td>
+            </tr>
+            <tr>
+                <th>Marquevoiture</th>
+                <td>{{ preference.marquevoiture }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('preferences_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('preferences_edit', { 'id': preference.iduser.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

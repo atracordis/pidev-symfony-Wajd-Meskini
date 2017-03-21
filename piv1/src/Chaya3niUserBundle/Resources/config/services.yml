@@ -1,0 +1,7 @@
+services:
+#    chaya3ni_user.example:
+#        class: Chaya3niUserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    authentication.handler.login_success_handler:
+                class:  Chaya3niUserBundle\Redirection\LoginSuccessHandler
+                arguments:  ['@router', '@security.authorization_checker']

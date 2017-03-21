@@ -1,0 +1,29 @@
+response_index:
+    path:     /
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Response:index" }
+    methods:  GET
+
+response_show:
+    path:     /{id}/show
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Response:show" }
+    methods:  [GET, POST]
+
+response_new:
+    path:     /new
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Response:new" }
+    methods:  [GET, POST]
+
+response_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Response:edit" }
+    methods:  [GET, POST]
+
+response_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Response:delete" }
+    methods:  DELETE
+
+reponse_test_pagination:
+    path:     /testpagination
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Response:testPagination" }
+    methods:  [GET, POST]

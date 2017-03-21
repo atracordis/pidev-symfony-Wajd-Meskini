@@ -1,0 +1,18 @@
+chaya3ni_user_homepage:
+    path:     /
+    defaults: { _controller: Chaya3niUserBundle:Default:index }
+chaya3ni_homepageuser:
+    path:     /user/userpage
+    defaults: { _controller: Chaya3niUserBundle:Default:userpage }
+chaya3ni_homepageemployee:
+    path:     /employee/employeepage
+    defaults: { _controller: Chaya3niUserBundle:Default:employeepage }
+chaya3ni_homepageadmin:
+    path:     /admin/adminpage
+    defaults: { _controller: Chaya3niUserBundle:Default:adminpage }
+chaya3ni_homepagerepresentant:
+    path:     /representant/reppage
+    defaults: { _controller: Chaya3niUserBundle:Default:representantpage }
+user_logout:
+    path: /logout
+    defaults: { _controller: Chaya3niUserBundle:Default:logout }

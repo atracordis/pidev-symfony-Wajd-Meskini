@@ -1,0 +1,44 @@
+<?php
+
+namespace Chaya3niUserBundle\Entity;
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ */
+class User extends BaseUser
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @var \Chaya3niUserBundle\Entity\Company
+     *
+     * @ORM\ManyToOne(targetEntity="Chaya3niUserBundle\Entity\Company")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idCompany", referencedColumnName="id")
+     * })
+     */
+    private $idcompany;
+
+    /**
+     * @var \Chaya3niUserBundle\Entity\Filiale
+     *
+     * @ORM\ManyToOne(targetEntity="Chaya3niUserBundle\Entity\Filiale")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idFiliale", referencedColumnName="id")
+     * })
+     */
+    private $idfiliale;
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
+}

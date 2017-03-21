@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ESPRITPIDEV\UserExpBundle\Entity\Rideanimal" table="rideanimal">
+    <id name="id" association-key="true"/>
+    <field name="nameanimal" type="string" column="nameAnimal" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="speciesanimal" type="string" column="speciesAnimal" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="haveluggage" type="boolean" column="haveLuggage" nullable="true"/>
+    <field name="luggagemass" type="float" column="luggageMass" precision="10" scale="0" nullable="false"/>
+    <field name="animalmass" type="float" column="animalMass" precision="10" scale="0" nullable="false"/>
+    <field name="specialneeds" type="string" column="specialNeeds" length="254" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="photo" type="string" column="photo" length="254" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="idride" type="integer" column="idride" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <one-to-one field="id" target-entity="Ridepassenger" fetch="LAZY">
+      <join-columns>
+        <join-column name="id" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

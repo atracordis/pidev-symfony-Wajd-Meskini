@@ -1,0 +1,24 @@
+preferences_index:
+    path:     /
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Preferences:index" }
+    methods:  GET
+
+preferences_show:
+    path:     /{id}/show
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Preferences:show" }
+    methods:  GET
+
+preferences_new:
+    path:     /new
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Preferences:new" }
+    methods:  [GET, POST]
+
+preferences_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Preferences:edit" }
+    methods:  [GET, POST]
+
+preferences_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Preferences:delete" }
+    methods:  DELETE

@@ -1,0 +1,19 @@
+{# total items count #}
+<div class="count">
+    {{ pagination.getTotalItemCount }}
+</div>
+<table>
+{{ form(form) }}
+    {# table body #}
+    {% for message in pagination %}
+        <tr {% if loop.index is odd %}class="color"{% endif %}>
+            <td>{{ message.id }}</td>
+            <td>{{ message.content }}</td>
+            <td>{{ message.datetime | date('Y-m-d') }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>

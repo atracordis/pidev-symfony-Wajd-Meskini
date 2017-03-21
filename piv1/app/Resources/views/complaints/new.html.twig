@@ -1,0 +1,91 @@
+{% extends 'layoutFront.html.twig' %}
+
+{% block body %}
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Complaints
+                <small>Someone bothers you? Let's take a look!</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="index.html">Home</a>
+                </li>
+                <li class="active">Contact</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    {{ form_start(form) }}
+        <div class="panel panel-default">
+            <div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Contact Form</div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="" method="post">
+                    <fieldset>
+                        <!-- Name input-->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="name">Could you sum up what happened?</label>
+                            <div class="col-md-9">
+                                {{ form_widget(form.type, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="message">Your message</label>
+                            <div class="col-md-9">
+                                {{ form_widget(form.content, { 'attr': {'class': 'form-control', 'rows': '5', 'placeholder': 'Type in your message here'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="name">Could you show us what happened?</label>
+                            <div class="col-md-9">
+                                {{ form_row(form.attachment) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 widget-right">
+                                <button type="submit" value="Create" class="btn btn-default btn-md pull-right">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    {{ form_end(form) }}
+    <div class="row">
+        <!-- Map Column -->
+        <div class="col-md-8">
+            <!-- Embedded Google Map -->
+            <iframe src="http://maps.google.com/maps?q=36.898392,10.1875433&z=17&output=embed" width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+
+        </div>
+        <!-- Contact Details Column -->
+        <div class="col-md-4">
+            <h3>Contact Details</h3>
+            <p>
+                Z.I. Chotrana II B.P. 160،
+                <br>Pôle Technologique El Ghazela، Ariana 2088<br>
+            </p>
+            <p><i class="fa fa-phone"></i>
+                <abbr title="Phone">P</abbr>: (216) 70-685-685</p>
+            <p><i class="fa fa-envelope-o"></i>
+                <abbr title="Email">E</abbr>: <a href="mailto:name@example.com">wajd.meskini@esprit.tn</a>
+            </p>
+            <p><i class="fa fa-clock-o"></i>
+                <abbr title="Hours">H</abbr>: Monday - Tuesday: 9:00 AM to 10:00 AM</p>
+            <ul class="list-unstyled list-inline list-social-icons">
+                <li>
+                    {{ socialButtons( {'twitter':false} ) }}
+                </li>
+            </ul><ul>
+                <li>
+                    {{ socialButtons( {'facebook':false} ) }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

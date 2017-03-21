@@ -1,0 +1,207 @@
+<?php
+
+namespace Chaya3niUserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Ridepassenger
+ *
+ * @ORM\Table(name="ridepassenger", indexes={@ORM\Index(name="idPassenger", columns={"idPassenger"}), @ORM\Index(name="id", columns={"id"}), @ORM\Index(name="idFiliale", columns={"idFiliale"})})
+ * @ORM\Entity
+ */
+class Ridepassenger
+{
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $price;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="citySource", type="string", length=254, nullable=false)
+     */
+    private $citysource;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="placeSource", type="string", length=254, nullable=false)
+     */
+    private $placesource;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="longSource", type="integer", nullable=false)
+     */
+    private $longsource;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="latSource", type="integer", nullable=false)
+     */
+    private $latsource;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cityDestination", type="string", length=254, nullable=false)
+     */
+    private $citydestination;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="placeDestination", type="string", length=254, nullable=false)
+     */
+    private $placedestination;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="longDestination", type="integer", nullable=false)
+     */
+    private $longdestination;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="latDestination", type="integer", nullable=false)
+     */
+    private $latdestination;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateTimeRangeSource", type="datetime", nullable=false)
+     */
+    private $datetimerangesource;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateTimeRangeDestination", type="datetime", nullable=false)
+     */
+    private $datetimerangedestination;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="handicap", type="boolean", nullable=false)
+     */
+    private $handicap = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="animal", type="boolean", nullable=false)
+     */
+    private $animal = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="haveAnimal", type="boolean", nullable=false)
+     */
+    private $haveanimal = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="haveLuggage", type="boolean", nullable=false)
+     */
+    private $haveluggage = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="luggageMass", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $luggagemass = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="music", type="boolean", nullable=false)
+     */
+    private $music = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="musicTaste", type="string", length=254, nullable=false)
+     */
+    private $musictaste;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="smoking", type="boolean", nullable=false)
+     */
+    private $smoking = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="allowSmoking", type="boolean", nullable=false)
+     */
+    private $allowsmoking = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="frequency", type="integer", nullable=true)
+     */
+    private $frequency;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="frequencyUnit", type="string", length=254, nullable=true)
+     */
+    private $frequencyunit;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Chaya3niUserBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Chaya3niUserBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idPassenger", referencedColumnName="id")
+     * })
+     */
+    private $idpassenger;
+
+    /**
+     * @var \Chaya3niUserBundle\Entity\Filiale
+     *
+     * @ORM\ManyToOne(targetEntity="Chaya3niUserBundle\Entity\Filiale")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idFiliale", referencedColumnName="id")
+     * })
+     */
+    private $idfiliale;
+
+
+}
+
