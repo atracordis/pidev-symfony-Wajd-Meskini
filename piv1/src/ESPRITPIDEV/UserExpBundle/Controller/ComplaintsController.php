@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use DateTime;
 use Ob\HighchartsBundle\Highcharts\Highchart;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Complaint controller.
@@ -76,8 +77,8 @@ class ComplaintsController extends Controller
             {
             $em = $this->getDoctrine()->getManager();
             $file = $complaint->getAttachment();
-          $fileName = $this->get('app.brochure_uploader')->upload($file);
-         $complaint->setAttachment($fileName);
+            $fileName = $this->get('app.brochure_uploader')->upload($file);
+            $complaint->setAttachment($fileName);
             }
             if ($complaint->getAttachment()==null)
             {
@@ -216,10 +217,13 @@ class ComplaintsController extends Controller
     }
     public function displayMyComplaintsAction()
     {
+        if ($this->getUser()!= null){
+
         $query = $this->getDoctrine()->getEntityManager()->createQuery("
             SELECT v FROM ESPRITPIDEVUserExpBundle:Complaints v 
              where v.iduser=:id  order by v.datetime desc, v.status asc")->setParameter('id', $this->getUser()->getId());
         $complaints=$query->getResult();
+        $k=0;
         foreach($complaints as &$v) {
             $v->setId(utf8_encode($v->getId()));
             $v->setContent(utf8_encode($v->getContent()));
@@ -237,7 +241,11 @@ class ComplaintsController extends Controller
         }
 
         if (isset($list)) {
-            $fp = fopen('bundles/ESPRITPIDEV/UserExpBundle/tables/mycomplaints.json', 'w');
+            if (!file_exists('bundles/ESPRITPIDEV/UserExpBundle/tables/'.$this->getUser()->getId())) {
+                mkdir('bundles/ESPRITPIDEV/UserExpBundle/tables/'.$this->getUser()->getId(), 0777, true);
+            }
+
+            $fp = fopen('bundles/ESPRITPIDEV/UserExpBundle/tables/'.$this->getUser()->getId().'/mycomplaints.json', 'w');
             fwrite($fp, json_encode($list));
             fclose($fp);
         }
@@ -285,10 +293,15 @@ class ComplaintsController extends Controller
             $this->addFlash('success', "You have <a href='/' class='alert-link'>".$k." new response(s).</a>");
 
         return $this->render('complaints/myComplaints.html.twig', array(
-            'complaints' => $complaints,
-        ));
+            'complaints' => true,
+        ));}
+        else {
+
+            $url = $this->generateUrl('fos_user_registration_confirmed');
+            $response = new RedirectResponse($url);
+        return $response;}
     }
-    public function displayAllUsersAction()
+    public function displayAllUsersbackAction()
     {
         $query  = $this->getDoctrine()->getEntityManager()
             ->createQuery
@@ -308,8 +321,14 @@ class ComplaintsController extends Controller
                 $address=$v->getAddressVar();
             if ($v->getTelephone()==true)
                 $phone=$v->getTelephoneVar();
+            $link=utf8_encode("<a href='/piv1/web/app_dev.php/userexp/complaints/").$v->getIduser()->getId();
+            $link=$link.utf8_encode("/warning'>Send warning</a>");
 
-            $list[] = array('Username'=>$v->getIduser()->getUsername(), 'Useremail'=>$email, 'Address'=>$address, 'Telephone'=> $phone);
+            $list[] = array(
+                'Username'=>$v->getIduser()->getUsername(),
+                'Useremail'=>$email,
+                'Address'=>$address,
+                'Telephone'=> $phone,'Warning'=>$link);
         }
 
         if (isset($list)) {
@@ -322,6 +341,38 @@ class ComplaintsController extends Controller
         ));
     }
 
+    public function displayAllUsersAction()
+    {
+        $query  = $this->getDoctrine()->getEntityManager()
+            ->createQuery
+            ("SELECT v, k FROM ESPRITPIDEVUserExpBundle:Preferences v join v.iduser k
+             where k.roles !='a:1:{i:0;s:10:\"ROLE_ADMIN\";}'");
+        $complaints=$query->getResult();
+
+        foreach($complaints as &$v){
+            $link=utf8_encode("<a href='/piv1/web/app_dev.php/message/").
+                $v->getIduser()->getUsername().
+                utf8_encode("/new'>Contact</a>");
+
+             $email=$v->getIduser()->getEmail();
+            $address=$v->getAddressVar();
+            $phone=$v->getTelephoneVar();
+            $list[] = array('Username'=>$v->getIduser()->getUsername(),
+                'Useremail'=>$email,
+                'Address'=>$address,
+                'Telephone'=> $phone,
+                'Warning'=>$link);
+        }
+
+        if (isset($list)) {
+            $fp = fopen('bundles/ESPRITPIDEV/UserExpBundle/tables/allusersnew.json', 'w');
+            fwrite($fp, json_encode($list));
+            fclose($fp);
+        }
+        return $this->render('complaints/allusers.html.twig', array(
+            'complaints' => $complaints,
+        ));
+    }
 
     public function displayAllUsersAdminAction()
     {

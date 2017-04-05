@@ -28,6 +28,10 @@ class DefaultController extends Controller
     {
         return $this->render('Chaya3niUserBundle:Default:indexrepresentant.html.twig');
     }
+    public function dachatyesAction()
+    {
+        return $this->render('Chaya3niUserBundle:Default:Chat.html.twig');
+    }
     public function logoutAction()
     {
         return $this->render('Chaya3niUserBundle:Default:indexrepresentant.html.twig');

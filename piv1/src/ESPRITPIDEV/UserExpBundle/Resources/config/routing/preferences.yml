@@ -1,3 +1,9 @@
+
+preferences_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Preferences:edit" }
+    methods:  [GET, POST]
+
 preferences_index:
     path:     /
     defaults: { _controller: "ESPRITPIDEVUserExpBundle:Preferences:index" }
@@ -11,11 +17,6 @@ preferences_show:
 preferences_new:
     path:     /new
     defaults: { _controller: "ESPRITPIDEVUserExpBundle:Preferences:new" }
-    methods:  [GET, POST]
-
-preferences_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Preferences:edit" }
     methods:  [GET, POST]
 
 preferences_delete:

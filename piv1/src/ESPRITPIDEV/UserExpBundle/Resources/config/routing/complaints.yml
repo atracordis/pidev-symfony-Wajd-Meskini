@@ -14,17 +14,13 @@ complaints_single_users_index:
     path:     /{id}/displaysingleusers
     defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:displayComplaintsPerUser" }
     methods:  GET
-complaints_my_complaints:
-    path:     /displaymycomplaints
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:displayMyComplaints" }
-    methods:  GET
-complaints_show_user:
-    path:     /{id}/showuser
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:showuser" }
-    methods:  GET
 complaints_pending:
     path:     /displaypendingcomplaints
     defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:displayPendingComplaints" }
+    methods:  GET
+complaints_all_users_admin:
+    path:     /displayallusersadmin
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:displayAllUsersAdmin" }
     methods:  GET
 complaints_show:
     path:     /{id}/show
@@ -34,40 +30,6 @@ complaints_seen:
     path:     /displayseencomplaints
     defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:displaySeenComplaints" }
     methods:  GET
-complaints_success_show:
-    path:     /{id}/successshow
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:successShow" }
-    methods:  GET
-complaints_new:
-    path:     /new
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:new" }
-    methods:  [GET, POST]
-
-complaints_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:edit" }
-    methods:  [GET, POST]
-
-complaints_all_users_admin:
-    path:     /displayallusersadmin
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:displayAllUsersAdmin" }
-    methods:  GET
-complaints_warning:
-    path:     /{id}/warning
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:warning" }
-    methods:  [GET, POST]
-complaints_delete:
-    path:     /{id}/delete
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:delete" }
-    methods:  DELETE
-complaints_answer:
-    path:     /{id}/answer
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Response:new" }
-    methods:  [GET, POST]
-complaints_user_answer:
-    path:     /{id}/answeruser
-    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Response:newuser" }
-    methods:  [GET, POST]
 complaints_test_charts:
     path:     /testdachart
     defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:chart" }
@@ -87,4 +49,42 @@ complaints_mail_homepage:
 complaints_mail_success:
     path:     /mailsuccess
     defaults: { _controller: "ESPRITPIDEVUserExpBundle:Mail:success" }
+    methods:  [GET, POST]
+complaints_warning:
+    path:     /{id}/warning
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:warning" }
+    methods:  [GET, POST]
+complaints_answer:
+    path:     /{id}/answer
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Response:new" }
+    methods:  [GET, POST]
+complaints_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:delete" }
+    methods:  DELETE
+
+complaints_my_complaints:
+    path:     /displaymycomplaints
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:displayMyComplaints" }
+    methods:  GET
+complaints_show_user:
+    path:     /{id}/showuser
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:showuser" }
+    methods:  GET
+complaints_success_show:
+    path:     /{id}/successshow
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:successShow" }
+    methods:  GET
+complaints_new:
+    path:     /new
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:new" }
+    methods:  [GET, POST]
+complaints_user_answer:
+    path:     /{id}/answeruser
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Response:newuser" }
+    methods:  [GET, POST]
+
+complaints_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:Complaints:edit" }
     methods:  [GET, POST]

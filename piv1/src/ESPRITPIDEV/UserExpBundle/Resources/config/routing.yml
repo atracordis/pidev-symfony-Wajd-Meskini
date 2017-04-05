@@ -1,6 +1,6 @@
 espritpidev_user_exp_preferences:
     resource: "@ESPRITPIDEVUserExpBundle/Resources/config/routing/preferences.yml"
-    prefix:   /preferences
+    prefix:   /user/preferences
 espritpidev_user_exp_complaints:
     resource: "@ESPRITPIDEVUserExpBundle/Resources/config/routing/complaints.yml"
     prefix:   /complaints
@@ -25,5 +25,8 @@ chaya3ni_homepageadmin:
 chaya3ni_homepagerepresentant:
     path:     /representant/reppage
     defaults: { _controller: Chaya3niUserBundle:Default:representantpage }
+testingdachat:
+    path:     /testingdachat
+    defaults: { _controller: Chaya3niUserBundle:Default:dachatyes }
 user_logout:
     path: /logout

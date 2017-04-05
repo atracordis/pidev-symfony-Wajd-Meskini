@@ -1,29 +1,27 @@
-<body>
-<h2> <strong> Formulaire De Contact</strong> </h2>
+{% extends 'layoutBack.html.twig' %}
+{% block body %}
+    <div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Newsletter</div>
+            <div class="panel-body">
+
+    <h2> <strong> Share a newsletter with our users</strong> </h2>
 <hr>
-<h3><p> Contacter nous </p></h3>
-{{ form_start (form) }}
-<table>
-    <tr>
-        <td> Nom </td>
-        <td> {{ form_widget (form.nom) }} </td>
-    </tr>
-    <tr>
-        <td> Prenom </td>
-        <td> {{ form_widget (form.prenom) }} </td>
-    </tr>
-    <tr>
-        <td> Téléphone </td>
-        <td> {{ form_widget (form.tel) }} </td>
-    </tr>
-    <tr>
-        <td> Email </td>
-        <td> {{ form_widget (form.email) }} </td>
-    </tr>
-    <tr>
-        <td> Text </td>
-        <td> {{ form_widget (form.text) }} </td>
-    </tr>
-</table>
+                <h3><p> You have {{ count }} user(s) subscribed in the newsletter.</p></h3>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="message">Your message</label>
+                    <div class="col-md-9">
+
+                    {{ form_start (form) }}
+
+        {{ form_widget (form.text, { 'attr': {'class': 'form-control', 'rows': '5', 'placeholder': 'Type in your message here'} }) }}
+                    </div></div>
+                <div class="form-group">
+                    <div class="col-md-12 widget-right">
+                        <button type="submit" value="valider" class="btn btn-default btn-md pull-right">Submit</button>
+                    </div>
+                </div>
 {{ form_end (form) }}
-</body>
+            </div></div></div></div>
+{% endblock %}
