@@ -65,7 +65,8 @@ class ResponseController extends Controller
             $mail->setEmail('wajd.meskini@esprit.tn');
             $mail->setNom($complaint->getIduser()->getUsername());
             $mail->setPrenom($complaint->getIduser()->getUsername());
-            $mail->setText("Greetings \n You have received a new response for your complaint with topic\n ".$complaint->getType()." dated ".$complaint->getDatetime()->format('Y-m-d H:i:s'));
+            $mail->setText("Greetings \n You have received a new response for your complaint with topic\n ".$complaint->getType()." dated ".$complaint->getDatetime()->format('Y-m-d H:i:s')
+            ." <a href='localhost/piv1/web/app_dev.php/user/".$complaint->getId()."/showuser'>Display</a>");
             $message = \Swift_Message::newInstance()
                 ->setSubject('New response')
                 ->setFrom('atracordis5@gmail.com')

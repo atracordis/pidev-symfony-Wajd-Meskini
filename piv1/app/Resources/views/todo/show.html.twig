@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Todo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ toDo.id }}</td>
+            </tr>
+            <tr>
+                <th>Datetime</th>
+                <td>{% if toDo.datetime %}{{ toDo.datetime|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ toDo.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('no_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('no_edit', { 'id': toDo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,7 +1,6 @@
 {% extends 'layoutFront.html.twig' %}
 
 {% block body %}
-    <h1>Response</h1>
 {% if app.user.id==complaint.iduser.id %}
 
     <div class="panel panel-default chat">
@@ -60,7 +59,10 @@
         {{ form_end(form) }}
 
     </div>
-{% else %} Access denied {% endif %}
+{% else %}
+    <script>window.location.href = "{{ path("chaya3ni_denied") }}"</script>
+{% endif %}
 
+    {% include("footer.html.twig") %}
 
 {% endblock %}

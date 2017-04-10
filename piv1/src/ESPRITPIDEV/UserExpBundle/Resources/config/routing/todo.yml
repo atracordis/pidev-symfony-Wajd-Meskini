@@ -1,0 +1,24 @@
+no_index:
+    path:     /todoindex
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:ToDo:index" }
+    methods:  GET
+
+no_show:
+    path:     /{id}/todoshow
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:ToDo:show" }
+    methods:  GET
+
+no_new:
+    path:     /admin/index
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:ToDo:new" }
+    methods:  [GET, POST]
+
+no_edit:
+    path:     /admin/{id}/edittodo
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:ToDo:edit" }
+    methods:  [GET]
+
+no_delete:
+    path:     /admin/{id}/deletetodo
+    defaults: { _controller: "ESPRITPIDEVUserExpBundle:ToDo:delete" }
+    methods:  GET

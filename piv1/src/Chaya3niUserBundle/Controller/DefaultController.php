@@ -8,32 +8,36 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('Chaya3niUserBundle:Default:index.html.twig');
+        return $this->render('index.html.twig');
     }
     public function userpageAction()
     {
-        return $this->render('Chaya3niUserBundle:Default:indexuser.html.twig');
+        return $this->render('index.html.twig');
     }
 
     public function employeepageAction()
     {
-        return $this->render('Chaya3niUserBundle:Default:indexemployee.html.twig');
+        return $this->render('index.html.twig');
     }
 
     public function adminpageAction()
     {
-         return $this->render('Chaya3niUserBundle:Default:indexadmin.html.twig');
+        return $this->redirectToRoute('no_new');
     }
     public function representantpageAction()
     {
-        return $this->render('Chaya3niUserBundle:Default:indexrepresentant.html.twig');
+        return $this->render('Chaya3niUserBundle:Default:index.html.twig');
     }
     public function dachatyesAction()
     {
-        return $this->render('Chaya3niUserBundle:Default:Chat.html.twig');
+        return $this->render('index.html.twig');
     }
     public function logoutAction()
     {
-        return $this->render('Chaya3niUserBundle:Default:indexrepresentant.html.twig');
+        return $this->render('Chaya3niUserBundle:Default:index.html.twig');
+    }
+    public function accessAction()
+    {
+        return $this->render('access.html.twig');
     }
 }

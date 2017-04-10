@@ -3,13 +3,13 @@ espritpidev_user_exp_preferences:
     prefix:   /user/preferences
 espritpidev_user_exp_complaints:
     resource: "@ESPRITPIDEVUserExpBundle/Resources/config/routing/complaints.yml"
-    prefix:   /complaints
+    prefix:   /
 espritpidev_user_exp_response:
     resource: "@ESPRITPIDEVUserExpBundle/Resources/config/routing/response.yml"
-    prefix:   /response
-espritpidev_user_exp_homepage:
-    path:     /
-    defaults: { _controller: ESPRITPIDEVUserExpBundle:Default:index }
+    prefix:   /
+espritpidev_user_exp_to_do:
+    resource: "@ESPRITPIDEVUserExpBundle/Resources/config/routing/todo.yml"
+    prefix:   /
 chaya3ni_user_homepage:
     path:     /
     defaults: { _controller: Chaya3niUserBundle:Default:index }
@@ -26,7 +26,7 @@ chaya3ni_homepagerepresentant:
     path:     /representant/reppage
     defaults: { _controller: Chaya3niUserBundle:Default:representantpage }
 testingdachat:
-    path:     /testingdachat
+    path:     /
     defaults: { _controller: Chaya3niUserBundle:Default:dachatyes }
 user_logout:
     path: /logout

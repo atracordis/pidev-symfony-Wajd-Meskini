@@ -79,7 +79,6 @@ class PreferencesController extends Controller
         $editForm = $this->createForm(PreferencesType::class, $preference);
         $editForm->handleRequest($request);
         $user = $this->getUser()->getId();
-        echo $user;
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             $this->getDoctrine()->getManager()->flush();

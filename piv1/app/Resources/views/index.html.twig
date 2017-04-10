@@ -1,0 +1,175 @@
+{% extends 'layoutFront.html.twig' %}
+
+{% block body %}
+
+    <style type="text/css" rel="stylesheet">
+        .carousel-inner > .item > img {
+            margin: 0 auto;
+        }
+
+    </style>
+
+    <!-- Header Carousel -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div  class="carousel-inner">
+            <div class="item active">
+                <img src="{{ asset('images/cov1.png') }}" class="img-responsive">
+                <div class="carousel-caption">
+                    <h2>Ride green!</h2>
+                </div>
+            </div>
+            <div class="item">
+                <img src="{{ asset('images/cov2.png') }}" class="img-responsive">
+                <div class="carousel-caption">
+                    <h2>Ride now!</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item active">
+                    <img src="{{ asset('images/cov3.png') }}" class="img-responsive">
+                </div>
+                <div class="carousel-caption">
+                    <h2>Meet the community!</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </header>
+<br><br>
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-lg-12">
+
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i> Easy to use</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Need to go to work and don't have a ride? Or perhaps you're going to an event that is far away from home? We have you back! All you need is to create your profile, and it opens you the doors of our community!</p>
+                        <a href="{{ path("fos_message_inbox") }}" class="btn btn-default">Meet the community!</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-gift"></i> Free &amp; Open for all</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>You listen to folk? You smoke or own a lion and a snake as pets? We don't judge! We don't discriminate! We don't make you pay! All money involved is strictly peer-to-peer. All we want is help the community drive safely and drive green!</p>
+                        <a href="{{ path("fos_user_registration_register") }}" class="btn btn-default">Join us already!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-compass"></i> Completely safe</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>While we don't make a full background check on the users registrating to our app, we ask that they give a clear picture of themselves as a mean to help all our users feel safe with one another. And if you have a problem, complain!</p>
+                        <a href="{{ path("complaints_new") }}" class="btn btn-default">Want to complaint already?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Green is the new happy!</h2>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                    <img class="img-responsive img-portfolio img-hover" src="{{ asset('images/img1.jpg') }}" alt="">
+            </div>
+            <div class="col-md-4 col-sm-6">
+                    <img class="img-responsive img-portfolio img-hover" src="{{ asset('images/img2.jpg') }}" alt="">
+            </div>
+            <div class="col-md-4 col-sm-6">
+                    <img class="img-responsive img-portfolio img-hover" src="{{ asset('images/img3.jpg') }}" alt="">
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Features Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Chaya3ni for companies</h2>
+            </div>
+            <div class="col-md-6">
+                <p>Are you a company? Let us help you!</p>
+                <ul>
+                    <li><strong>Multiple companies and multiple affiliates management</strong>
+                    </li>
+                    <li>Manage the carpooling of your employees! </li>
+                    <li>Enrol as a representative to keep control of your business!</li>
+                    <li>Your people will never be late again!</li>
+                </ul>
+                <p>You can have a representative register among our users, to manage your companies, their respective affiliates, and their respective employeees, to make sure your people are never late again!</p>
+            </div>
+            <div class="col-md-6">
+                <img class="img-responsive" src="{{ asset('images/company.jpg') }}" alt="">
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Call to Action Section -->
+        <div class="well">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>What are you waiting for? Come on and start carpooling! We'll chaya3 you to hell and back!</p>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-lg btn-default btn-block" href="{{ path("fos_user_registration_register") }}">Register</a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Chaya3ni 2017</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+        $('.carousel').carousel({
+            interval: 5000 //changes the speed
+        })
+    </script>
+
+
+{% endblock %}

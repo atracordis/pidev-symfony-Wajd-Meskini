@@ -1,9 +1,12 @@
 espritpidev_user_exp:
     resource: "@ESPRITPIDEVUserExpBundle/Resources/config/routing.yml"
-    prefix:   /userexp
+    prefix:   /
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 fos_message:
     resource: "@FOSMessageBundle/Resources/config/routing.xml"
     prefix: /message
+chaya3ni_denied:
+    path:     /denied
+    defaults: { _controller: Chaya3niUserBundle:Default:access }

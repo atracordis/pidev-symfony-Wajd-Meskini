@@ -6,11 +6,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Complaints list</div>
 
-                <ul>
-                    <li>
-                        <a href="{{ path('complaints_new') }}">Create a new complaint</a>
-                    </li>
-                </ul>
+
                 <div class="panel-body">
                     <table data-toggle="table" data-url="{{ asset("bundles/ESPRITPIDEV/UserExpBundle/tables/#{app.user.id}/mycomplaints.json") }}"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
                         <thead>

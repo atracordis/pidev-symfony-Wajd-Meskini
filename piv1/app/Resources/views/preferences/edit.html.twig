@@ -47,5 +47,6 @@
 
                 </div></div></div></div></div>
     {{ form_end(edit_form) }}
-{% else %}Access denied{% endif %}
+{% else %}    <script>window.location.href = "{{ path("chaya3ni_denied") }}"</script>
+    {% endif %}
 {% endblock %}

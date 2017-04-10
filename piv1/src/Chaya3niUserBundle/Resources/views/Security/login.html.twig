@@ -1,28 +1,35 @@
-{% trans_default_domain 'FOSUserBundle' %}
+{% extends 'layoutFront.html.twig' %}
 {% block fos_user_content %}
+{% block body %}
+
+    {% trans_default_domain 'FOSUserBundle' %}
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     <div style="position: absolute;
   width: 300px;
-  height: 200px;
+  height: 300px;
   z-index: 15;
   top: 50%;
   left: 50%;
   margin: -100px 0 0 -150px;">
-
+<div class="row">
+    <div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Login</div>
+        <div class="panel-body">
     <form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
         <div class="box-body">
             <div class="form-group">
-                <label for="_username" class="col-sm-2 control-label">{{ 'security.login.username'|trans }}</label>
+                <label for="_username" class="col-md-3 control-label">{{ 'security.login.username'|trans }}</label>
 
                 <div class="col-sm-10">
                     <input type="text" class="form-control"  placeholder="{{ 'security.login.username'|trans }}"  id="username" name="_username" value="{{ last_username }}" required="required">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">{{ 'security.login.password'|trans }}</label>
+                <label for="inputPassword3" class="col-md-3  control-label">{{ 'security.login.password'|trans }}</label>
 
                 <div class="col-sm-10">
                     <input  class="form-control" id="inputPassword3" placeholder="{{ 'security.login.password'|trans }}" type="password"  name="_password" required="required">
@@ -38,10 +45,15 @@
                 </div>
             </div>
         </div>
-        <div class="box-footer">
+
             <button type="submit" class="btn btn-info pull-right"  id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" >Sign in</button>
-        </div>
-        <!-- /.box-footer -->
     </form>
-    </div>
+    <button class="btn btn-info" role="button">
+        <a style="color: white;"  href="{{ path('fos_user_registration_register') }}">
+            {{ 'layout.register'|trans({}, 'FOSUserBundle') }}
+        </a>
+        </button>
+        <!-- /.box-footer -->
+        </div></div></div></div></div>
+{% endblock body %}
 {% endblock fos_user_content %}

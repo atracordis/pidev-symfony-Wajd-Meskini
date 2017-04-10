@@ -41,7 +41,7 @@ class ComplaintsController extends Controller
             $v->setStatus(utf8_encode($v->getStatus()));
         }
         foreach($complaints as &$v){
-           $link=utf8_encode("<a href='/piv1/web/app_dev.php/userexp/complaints/").$v->getId();
+           $link=utf8_encode("<a href='/piv1/web/app_dev.php/admin/").$v->getId();
            $link=$link.utf8_encode("/show'>Display</a>");
             $list[] = array('Id' => $v->getId(), 'Type' => $v->getType(), 'Datetime' => $v->getDatetime(),
                 'Attachment' => $v->getAttachment(), 'Status' => $v->getStatus(),'Content' => $link, 'Username'=>$v->getIduser()->getUsername(), 'Useremail'=>$v->getIduser()->getEmail(),);
@@ -169,7 +169,7 @@ class ComplaintsController extends Controller
           $complaints=$query->getResult();
 
         foreach($complaints as &$v){
-            $link=utf8_encode("<a href='/piv1/web/app_dev.php/userexp/complaints/").$v->getIduser()->getId();
+            $link=utf8_encode("<a href='/piv1/web/app_dev.php/admin/").$v->getIduser()->getId();
             $link=$link.utf8_encode("/displaysingleusers'>Display</a>");
 
             $list[] = array('Username'=>$v->getIduser()->getUsername(), 'Useremail'=>$v->getIduser()->getEmail(),'Display'=>$link);
@@ -188,7 +188,7 @@ class ComplaintsController extends Controller
     {
         $query = $this->getDoctrine()->getEntityManager()->createQuery("
             SELECT v FROM ESPRITPIDEVUserExpBundle:Complaints v 
-             where v.iduser=:id and v.status='Unseen' order by v.datetime desc")->setParameter('id', $id);
+             where v.iduser=:id and (v.status='Unseen' or v.status='Pending')  order by v.datetime desc")->setParameter('id', $id);
         $complaints=$query->getResult();
         foreach($complaints as &$v) {
             $v->setId(utf8_encode($v->getId()));
@@ -199,7 +199,7 @@ class ComplaintsController extends Controller
             $v->setStatus(utf8_encode($v->getStatus()));
         }
         foreach($complaints as &$v){
-            $link=utf8_encode("<a href='/piv1/web/app_dev.php/userexp/complaints/").$v->getId();
+            $link=utf8_encode("<a href='/piv1/web/app_dev.php/admin/").$v->getId();
             $link=$link.utf8_encode("/show'>Display</a>");
 
             $list[] = array('Id' => $v->getId(), 'Type' => $v->getType(), 'Datetime' => $v->getDatetime(),
@@ -207,7 +207,7 @@ class ComplaintsController extends Controller
         }
 
         if (isset($list)) {
-            $fp = fopen('bundles/ESPRITPIDEV/UserExpBundle/tables/singleusercomplaint.json', 'w');
+            $fp = fopen('bundles/ESPRITPIDEV/UserExpBundle/tables/usersingle.json', 'w');
             fwrite($fp, json_encode($list));
             fclose($fp);
         }
@@ -233,7 +233,7 @@ class ComplaintsController extends Controller
             $v->setStatus(utf8_encode($v->getStatus()));
         }
         foreach($complaints as &$v){
-            $link=utf8_encode("<a href='/piv1/web/app_dev.php/userexp/complaints/").$v->getId();
+            $link=utf8_encode("<a href='/piv1/web/app_dev.php/user/").$v->getId();
             $link=$link.utf8_encode("/showuser'>Display</a>");
 
             $list[] = array('Id' => $v->getId(), 'Type' => $v->getType(), 'Datetime' => $v->getDatetime(),
@@ -244,6 +244,7 @@ class ComplaintsController extends Controller
             if (!file_exists('bundles/ESPRITPIDEV/UserExpBundle/tables/'.$this->getUser()->getId())) {
                 mkdir('bundles/ESPRITPIDEV/UserExpBundle/tables/'.$this->getUser()->getId(), 0777, true);
             }
+
 
             $fp = fopen('bundles/ESPRITPIDEV/UserExpBundle/tables/'.$this->getUser()->getId().'/mycomplaints.json', 'w');
             fwrite($fp, json_encode($list));
@@ -264,9 +265,9 @@ class ComplaintsController extends Controller
              where v.iduser=:id  and v.status='Unseen' and v.type='Complaint Delete'")
             ->setParameter('id', $this->getUser()->getId());
 
-        $queryupdate->execute();
         $notifications=$query2->getScalarResult();
         $notificationReject=$queryReject->getScalarResult();
+            $queryupdate->execute();
 
         $querywarning = $this->getDoctrine()->getEntityManager()->createQuery("
             SELECT count(v.id) as counted FROM ESPRITPIDEVUserExpBundle:Warning v 
@@ -275,22 +276,22 @@ class ComplaintsController extends Controller
         $warning=$querywarning->getSingleResult();
         $warningnumber=$warning['counted'];
         if ($warningnumber==1)
-            $this->addFlash('warning', "You have <a class='alert-link'> one warning. </a> Please behave!");
+            $this->addFlash('warning', "You have <b> one warning. </b> Please behave!");
         if ($warningnumber==2)
-            $this->addFlash('danger', "You have <a  class='alert-link'> two warnings. </a> One more and your account will be banned!");
+            $this->addFlash('danger', "You have <b  class='alert-link'> two warnings. </b> One more and your account will be banned!");
 
 
         $k1="";
         foreach ($notificationReject as $not)
         {$k1= $not['counted'];}
         if ($k1!="0")
-            $this->addFlash('warning', "You have <a href='/' class='alert-link'>".$k1." rejected complaint.</a>");
+            $this->addFlash('warning', "You have <b  class='alert-link'>".$k1." rejected complaint.</b>");
 
         $k="";
         foreach ($notifications as $not)
         {$k= $not['counted'];}
         if ($k!="0")
-            $this->addFlash('success', "You have <a href='/' class='alert-link'>".$k." new response(s).</a>");
+            $this->addFlash('success', "You have <b class='alert-link'>".$k." new response(s).</b>");
 
         return $this->render('complaints/myComplaints.html.twig', array(
             'complaints' => true,
@@ -321,7 +322,7 @@ class ComplaintsController extends Controller
                 $address=$v->getAddressVar();
             if ($v->getTelephone()==true)
                 $phone=$v->getTelephoneVar();
-            $link=utf8_encode("<a href='/piv1/web/app_dev.php/userexp/complaints/").$v->getIduser()->getId();
+            $link=utf8_encode("<a href='/piv1/web/app_dev.php/admin/").$v->getIduser()->getId();
             $link=$link.utf8_encode("/warning'>Send warning</a>");
 
             $list[] = array(
@@ -354,9 +355,15 @@ class ComplaintsController extends Controller
                 $v->getIduser()->getUsername().
                 utf8_encode("/new'>Contact</a>");
 
-             $email=$v->getIduser()->getEmail();
-            $address=$v->getAddressVar();
-            $phone=$v->getTelephoneVar();
+            $email="Private";
+            $phone="Private";
+            $address="Private";
+            if ($v->getEmail()==true)
+                $email=$v->getIduser()->getEmail();
+            if ($v->getAddress()==true)
+                $address=$v->getAddressVar();
+            if ($v->getTelephone()==true)
+                $phone=$v->getTelephoneVar();
             $list[] = array('Username'=>$v->getIduser()->getUsername(),
                 'Useremail'=>$email,
                 'Address'=>$address,
@@ -383,7 +390,7 @@ class ComplaintsController extends Controller
         $complaints=$query->getResult();
 
         foreach($complaints as &$v){
-           $link=utf8_encode("<a href='/piv1/web/app_dev.php/userexp/complaints/").$v->getIduser()->getId();
+           $link=utf8_encode("<a href='/piv1/web/app_dev.php/admin/").$v->getIduser()->getId();
            $link=$link.utf8_encode("/warning'>Send warning</a>");
             $email=$v->getIduser()->getEmail();
             $address=$v->getAddressVar();
@@ -414,7 +421,7 @@ class ComplaintsController extends Controller
             $v->setStatus(utf8_encode($v->getStatus()));
         }
         foreach($complaints as &$v){
-            $link=utf8_encode("<a href='/piv1/web/app_dev.php/userexp/complaints/").$v->getId();
+            $link=utf8_encode("<a href='/piv1/web/app_dev.php/admin/").$v->getId();
             $link=$link.utf8_encode("/show'>Display</a>");
             $list[] = array('Id' => $v->getId(), 'Type' => $v->getType(), 'Datetime' => $v->getDatetime(),
                 'Attachment' => $v->getAttachment(), 'Status' => $v->getStatus(),'Content' => $link, 'Username'=>$v->getIduser()->getUsername(), 'Useremail'=>$v->getIduser()->getEmail(),);
@@ -442,7 +449,7 @@ class ComplaintsController extends Controller
             $v->setStatus(utf8_encode($v->getStatus()));
         }
         foreach($complaints as &$v){
-            $link=utf8_encode("<a href='/piv1/web/app_dev.php/userexp/complaints/").$v->getId();
+            $link=utf8_encode("<a href='/piv1/web/app_dev.php/admin/").$v->getId();
             $link=$link.utf8_encode("/show'>Display</a>");
             $list[] = array('Id' => $v->getId(), 'Type' => $v->getType(), 'Datetime' => $v->getDatetime(),
                 'Attachment' => $v->getAttachment(), 'Status' => $v->getStatus(),'Content' => $link, 'Username'=>$v->getIduser()->getUsername(), 'Useremail'=>$v->getIduser()->getEmail(),);
@@ -636,7 +643,6 @@ select count(v.iduser) as counted,
              group by monthgb");
         $complaints=$query->getResult();
         $statArray= array();
-        array_push($statArray,0);
 
         foreach($complaints as &$v) {
             array_push($statArray,intval($v['counted']));
@@ -645,17 +651,17 @@ select count(v.iduser) as counted,
 
         // Chart
         $series = array(
-            array("name" => "Data Serie Name",    "data" => $statArray)
+            array("name" => "Evolution of the complaints",    "data" => $statArray)
         );
 
         $ob = new Highchart();
         $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
-        $ob->title->text('Chart Title');
+        $ob->title->text('Number of complaints over a year');
         $categories = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
 
-        $ob->xAxis->title(array('text'  => "Horizontal axis title"));
+        $ob->xAxis->title(array('text'  => "Months"));
         $ob->xAxis->categories($categories);
-        $ob->yAxis->title(array('text'  => "Vertical axis title"));
+        $ob->yAxis->title(array('text'  => "Number of complaints"));
         $ob->series($series);
 
         return $this->render(':complaints:testingCharts.html.twig', array(

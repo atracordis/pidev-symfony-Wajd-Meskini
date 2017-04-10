@@ -1,20 +1,19 @@
 {% extends 'layoutFront.html.twig' %}
 
 {% block body %}
-    <h1>Complaint</h1>
 
 <div class="container">
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Advanced Table</div>
+            <div class="panel-heading">Complaint</div>
             <div class="panel-body">
 {% if app.user.id==complaint.iduser.id %}
                 <!-- /.row -->
                 <!-- Intro Content -->
                 <div class="row">
                     <div class="col-md-6">
-                        <img class="img-responsive" src="{% if not complaint.attachment==" " %}{{ asset('uploads/') }}{{ complaint.attachment }}{% else %}{{ asset('uploads/no.png') }}{% endif %}" alt="">
+                        <img class="img-responsive" src="{% if not complaint.attachment==" " %}{{ asset('uploads/'~complaint.attachment) }}{% else %}{{ asset('uploads/no.png') }}{% endif %}" alt="">
                     </div>
                     <div class="col-md-6">
                         <h4>Complaint from : {{ complaint.iduser.username }} </h4>
@@ -37,19 +36,12 @@
                         <div class="media">
                             <div class="pull-left">
                         <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-paper-plane fa-stack-1x fa-inverse"></i>
                         </span>
                             </div>
-                            <div class="media-body">
-                                <h4 class="media-heading" >
-                                    {{ form_start(delete_form) }}
-                                    <input class="btn btn-default btn-md" type="submit" value="Delete">
-                                    {{ form_end(delete_form) }}</h4>
-                            </div>
+
                         </div></div>
                     {% else %}
-                    Access denied
+                        <script>window.location.href = "{{ path("chaya3ni_denied") }}"</script>
                     {% endif %}
                     </div>
 
